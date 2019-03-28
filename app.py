@@ -1,6 +1,6 @@
 #!flask/bin/python
 from flask import Flask, render_template, request
-from flask.ext.uploads import UploadSet, configure_uploads, IMAGES
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 app = Flask(__name__)
 photos = UploadSet('photos', IMAGES)
 app.config['UPLOADED_PHOTOS_DEST'] = 'static/img'
