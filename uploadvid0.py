@@ -8,6 +8,7 @@ UPLOAD_FOLDER = 'static/img'
 ALLOWED_EXTENSIONS = set(['wav', 'mp4'])
 
 app = Flask(__name__)
+app.secret_key = '57095311a5465e90837d64f6e29bca0a'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 app.add_url_rule('/static/img/<filename>', 'uploaded_file',
@@ -50,8 +51,7 @@ def upload_file():
                 return redirect(request.url)
 
     flash('List of supported extensions: .wav, .mp4')
-    return render_template('uploadforminit.html')
+    return render_template('uploadformflash.html')
 
 if __name__ == '__main__':
-    app.secret_key = '57095311a5465e90837d64f6e29bca0a'
     app.run(debug=True)
