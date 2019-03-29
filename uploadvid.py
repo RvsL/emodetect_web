@@ -59,7 +59,7 @@ def upload():
                 flash('List of supported extensions: .wav, .mp4')
                 return redirect(request.url)
 
-    ## flash('List of supported extensions: .wav, .mp4')
+    # flash('List of supported extensions: .wav, .mp4')
     return render_template('uploadformflash.html', error = error)
 
 if __name__ == '__main__':
