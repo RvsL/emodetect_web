@@ -18,14 +18,14 @@ app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
     '/static/img':  app.config['UPLOAD_FOLDER']
 })
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def index():
@@ -58,7 +58,7 @@ def upload_file():
                 flash('List of supported extensions: .wav, .mp4')
                 return redirect(request.url)
 
-    flash('List of supported extensions: .wav, .mp4')
+    # flash('List of supported extensions: .wav, .mp4')
     return render_template('uploadformflash.html', error = error)
 
 if __name__ == '__main__':
