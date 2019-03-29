@@ -34,6 +34,7 @@ def upload_file():
             else:
                 flash('List of supported extensions: .wav, .mp4')
                 return redirect(request.url)
+
     return render_template('uploadforminit.html')
 
 if __name__ == '__main__':
