@@ -3,6 +3,8 @@ from flask import Flask, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
 from werkzeug import SharedDataMiddleware
+from flask import Flask, session
+from flask.ext.session import Session
 
 UPLOAD_FOLDER = 'static/img'
 ALLOWED_EXTENSIONS = set(['wav', 'mp4'])
@@ -53,6 +55,10 @@ def upload_file():
     return render_template('uploadforminit.html')
 
 if __name__ == '__main__':
+    SESSION_TYPE = 'redis'
+    app.config.from_object(__name__)
+    sess = Session()
+
     app.secret_key = 'lkjadslkjasdflkjadsf9999'
     app.config['SESSION_TYPE'] = 'filesystem'
 
