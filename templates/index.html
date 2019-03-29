@@ -1,21 +1,6 @@
-<!doctype html>
-<html>
-   <head>
-      <title>Отчет по эмоциям на основании видеозаписи</title>
-   </head>
-   <body>
-      {% with messages = get_flashed_messages() %}
-         {% if messages %}
-            <ul>
-               {% for message in messages %}
-               <li<{{ message }}</li>
-               {% endfor %}
-            </ul>
-         {% endif %}
-      {% endwith %}
-
-      <h1>Формат файла .wav, .mp4</h1>
-      <p>Загрузить <a href = "{{ url_for('upload') }}">
-         <b>файл?</b></a></p>
-   </body>
-</html>
+{% extends "layout.html" %}
+{% block body %}
+  <h1>Формат файла .wav, .mp4</h1>
+  <p>Загрузить <a href = "{{ url_for('upload') }}">
+     <b>файл?</b></a></p>
+{% endblock %}

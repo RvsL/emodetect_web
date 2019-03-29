@@ -20,7 +20,7 @@ def login():
          #error = 'You were successfully logged in'
          return redirect(url_for('index'))
 
-    flash('Hello')
+    #flash('Hello')
     return render_template('login.html', error = error)
 
 if __name__ == "__main__":
