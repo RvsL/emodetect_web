@@ -9,10 +9,10 @@ ALLOWED_EXTENSIONS = set(['wav', 'mp4'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.add_url_rule('static/img/<filename>', 'uploaded_file',
+app.add_url_rule('/static/img/<filename>', 'uploaded_file',
                  build_only=True)
 app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
-    'static/img':  app.config['UPLOAD_FOLDER']
+    '/static/img':  app.config['UPLOAD_FOLDER']
 })
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
