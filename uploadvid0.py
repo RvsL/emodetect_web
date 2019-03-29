@@ -4,7 +4,6 @@ from werkzeug.utils import secure_filename
 from flask import send_from_directory
 from werkzeug import SharedDataMiddleware
 from flask import Flask, session
-from flask.ext.session import Session
 
 UPLOAD_FOLDER = 'static/img'
 ALLOWED_EXTENSIONS = set(['wav', 'mp4'])
