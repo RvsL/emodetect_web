@@ -38,14 +38,14 @@ def upload():
         # check if the post request has the file part
         if 'file' not in request.files:
             error = 'Ошибка'
-            flash('No file part')
+            flash('Прикрепите файл')
             return redirect(request.url)
         file = request.files['file']
         # if user does not select file, browser also
         # submit a empty part without filename
         if file.filename == '':
             error = 'Ошибка'
-            flash('No selected file')
+            flash('Прикрепите файл')
             return redirect(request.url)
         if file:
             if allowed_file(file.filename):
@@ -56,7 +56,7 @@ def upload():
                 flash('Ваш файл был загружен! Ожидайте ответа в email')
                 return redirect(url_for('index'))
             else:
-                flash('List of supported extensions: .wav, .mp4')
+                flash('Поддерживаемые расширения файлов: .wav, .mp4')
                 return redirect(request.url)
 
     # flash('List of supported extensions: .wav, .mp4')
