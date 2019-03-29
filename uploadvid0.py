@@ -1,9 +1,8 @@
 import os
-from flask import Flask, request, redirect, url_for, flash
+from flask import Flask, request, redirect, url_for, flash, \
+render_template, session, send_from_directory
 from werkzeug.utils import secure_filename
-from flask import send_from_directory
 from werkzeug import SharedDataMiddleware
-from flask import Flask, session
 
 UPLOAD_FOLDER = 'static/img'
 ALLOWED_EXTENSIONS = set(['wav', 'mp4'])
