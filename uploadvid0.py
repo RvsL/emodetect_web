@@ -32,7 +32,7 @@ def index():
    return render_template('index.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
+def upload():
     error = None
     if request.method == 'POST':
         # check if the post request has the file part
