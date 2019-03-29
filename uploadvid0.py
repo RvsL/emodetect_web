@@ -49,9 +49,9 @@ def upload_file():
                 flash('List of supported extensions: .wav, .mp4')
                 return redirect(request.url)
 
-    flash('Ok!')
+    flash('List of supported extensions: .wav, .mp4')
     return render_template('uploadforminit.html')
 
 if __name__ == '__main__':
-    app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+    app.secret_key = '57095311a5465e90837d64f6e29bca0a'
     app.run(debug=True)
