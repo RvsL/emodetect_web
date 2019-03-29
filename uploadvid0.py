@@ -9,11 +9,14 @@ ALLOWED_EXTENSIONS = set(['wav', 'mp4'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 app.add_url_rule('/static/img/<filename>', 'uploaded_file',
                  build_only=True)
+
 app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
     '/static/img':  app.config['UPLOAD_FOLDER']
 })
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
@@ -36,20 +39,18 @@ def upload_file():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
+        if file:
+            if allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                return redirect(url_for('uploaded_file',
+                                        filename=filename))
+            else:
+                flash('List of supported extensions: .wav, .mp4')
+                return redirect(request.url)
+
+    flash('Ok!')
+    return render_template('uploadforminit.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
