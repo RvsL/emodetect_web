@@ -54,12 +54,5 @@ def upload_file():
     return render_template('uploadforminit.html')
 
 if __name__ == '__main__':
-    SESSION_TYPE = 'redis'
-    app.config.from_object(__name__)
-    sess = Session()
-
-    app.secret_key = 'lkjadslkjasdflkjadsf9999'
-    app.config['SESSION_TYPE'] = 'filesystem'
-
-    sess.init_app(app)
+    app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
     app.run(debug=True)
